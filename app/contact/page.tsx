@@ -24,9 +24,9 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="p-4">
+    <div className="space-y-4">
       <h1 className="text-xl font-bold">Contact</h1>
-      <form className="mt-4 space-y-2" onSubmit={submit}>
+      <form className="space-y-2" onSubmit={submit}>
         <input
           type="text"
           placeholder="Name"
@@ -44,7 +44,7 @@ export default function ContactPage() {
           Send
         </button>
       </form>
-      {status && <p className="mt-2 text-sm">{status}</p>}
-    </main>
+      {status && <p className="text-sm">{status}</p>}
+    </div>
   );
 }
