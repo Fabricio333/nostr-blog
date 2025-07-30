@@ -30,9 +30,9 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle theme"
-      className="rounded border px-2 py-1 text-sm"
+      className="rounded p-2 hover:bg-gray-200 dark:hover:bg-gray-800"
     >
-      {theme === "dark" ? "Light" : "Dark"}
+      <span aria-hidden>{theme === "dark" ? "🌞" : "🌙"}</span>
     </button>
   );
 }
