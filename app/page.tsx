@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import settings from '../settings.json';
 import { fetchProfile, fetchNotes } from '../lib/nostr';
-import VerticalCarousel from '../components/VerticalCarousel';
+import LatestPostsCarousel from '../components/LatestPostsCarousel';
 
 export default async function HomePage() {
   const profile = await fetchProfile(settings.npub);
@@ -23,8 +23,8 @@ export default async function HomePage() {
           {profile.about || settings.bio}
         </p>
       </div>
-      <div className="h-80">
-        <VerticalCarousel notes={notes} />
+      <div>
+        <LatestPostsCarousel notes={notes} />
       </div>
     </div>
   );

@@ -1,13 +1,18 @@
 import Link from 'next/link';
+import { fetchProfile } from '../lib/nostr';
+import settings from '../settings.json';
+import ThemeToggle from './ThemeToggle';
 
-export default function Header() {
+export default async function Header() {
+  const profile = await fetchProfile(settings.npub);
+  const siteName = profile?.name || 'Nostr Blog';
   return (
     <header className="border-b bg-white dark:bg-gray-900">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link href="/" className="text-lg font-semibold">
-          Nostr Blog
+          {siteName}
         </Link>
-        <nav className="flex gap-4 text-sm font-medium">
+        <nav className="flex items-center gap-4 text-sm font-medium">
           <Link href="/" className="hover:underline">
             Home
           </Link>
@@ -23,6 +28,7 @@ export default function Header() {
           <Link href="/contact" className="hover:underline">
             Contact
           </Link>
+          <ThemeToggle />
         </nav>
       </div>
     </header>
