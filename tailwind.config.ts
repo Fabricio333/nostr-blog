@@ -7,7 +7,13 @@ const config: Config = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: '#0f172a',
+        foreground: '#f8fafc',
+        accent: '#14b8a6',
+      },
+    },
   },
   plugins: [],
 };

@@ -1,31 +1,25 @@
-import Image from 'next/image';
 import settings from '../settings.json';
 import { fetchProfile, fetchNotes } from '../lib/nostr';
-import LatestPostsCarousel from '../components/LatestPostsCarousel';
+import PostCard from '../components/PostCard';
+import ProfileBio from '../components/ProfileBio';
 
 export default async function HomePage() {
   const profile = await fetchProfile(settings.npub);
   const notes = await fetchNotes(settings.npub, 20);
 
   return (
-    <div className="flex flex-col gap-6 md:flex-row">
-      <div className="w-full md:w-1/3 space-y-4 text-center flex flex-col items-center">
-        {profile.picture && (
-          <Image
-            src={profile.picture}
-            alt="Profile picture"
-            width={128}
-            height={128}
-            className="rounded-full object-cover"
-          />
-        )}
-        <p className="whitespace-pre-wrap text-sm md:text-base">
-          {profile.about || settings.bio}
-        </p>
-      </div>
-      <div className="w-full md:w-2/3">
-        <LatestPostsCarousel notes={notes} />
-      </div>
+    <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 p-6 md:grid-cols-3">
+      <aside className="col-span-1 space-y-4 text-center">
+        <ProfileBio profile={profile} bio={settings.bio} />
+      </aside>
+      <section className="col-span-2 space-y-4">
+        <h2 className="text-2xl font-bold text-accent">Latest Posts</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {notes.map((n) => (
+            <PostCard key={n.id} post={n} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

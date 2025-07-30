@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { fetchProfile } from '../lib/nostr';
 import settings from '../settings.json';
-import ThemeToggle from './ThemeToggle';
+import DarkModeToggle from './DarkModeToggle';
 
 export default async function Header() {
   const profile = await fetchProfile(settings.npub);
@@ -28,7 +28,7 @@ export default async function Header() {
           <Link href="/contact" className="hover:underline">
             Contact
           </Link>
-          <ThemeToggle />
+          <DarkModeToggle />
         </nav>
       </div>
     </header>
