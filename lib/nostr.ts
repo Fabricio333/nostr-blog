@@ -84,6 +84,17 @@ export async function fetchPosts(pubkey: string): Promise<NostrPost[]> {
   }));
 }
 
+export async function fetchNotes(pubkey: string, limit = 20): Promise<NostrPost[]> {
+  const hex = npubToHex(pubkey);
+  const events = await fetchEvents({ authors: [hex], kinds: [1], limit });
+  return events.map((e) => ({
+    id: e.id,
+    content: e.content,
+    created_at: e.created_at,
+    tags: e.tags?.flat() ?? [],
+  }));
+}
+
 export async function fetchProfile(pubkey: string): Promise<Record<string, any>> {
   const hex = npubToHex(pubkey);
   const [event] = await fetchEvents({ authors: [hex], kinds: [0], limit: 1 });
