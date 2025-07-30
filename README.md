@@ -39,7 +39,7 @@ This is a personal blog website built with Next.js, Tailwind CSS, and Shadcn UI.
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 4. **Configure your Nostr npub**:
-   Edit the `settings.json` file in the project root and add your Nostr public key (`npub1...`). This is crucial for the blog to fetch your content.
+   Edit the `settings.json` file in the project root and add your Nostr public key (`npub1...`). You can also tweak other settings like the list of relays, default theme and profile bio.
 
 ## Project Structure
 
