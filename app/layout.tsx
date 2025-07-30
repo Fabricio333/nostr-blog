@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import Header from '../components/Header';
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: 'Personal Blog',
@@ -14,9 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+      <Head />
+      <body className="bg-background text-foreground">
         <Header />
-        <main className="container mx-auto px-4 py-6">{children}</main>
+        <main className="mx-auto max-w-7xl p-6">{children}</main>
       </body>
     </html>
   );
